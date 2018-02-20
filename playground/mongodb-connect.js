@@ -8,6 +8,7 @@ MongoClient.connect(`mongodb://${db_host}:${db_port}/TodoApp`,(err, db )=>{
   if (err) {
     return console.log('Unable to connect to MongoDB server');
   }
+
   console.log(`Connected to MongoDB server: ${db_host}:${db_port}`);
 
   db.collection('Users').insertOne({
