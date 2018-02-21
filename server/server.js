@@ -15,6 +15,7 @@ app.use(bodyParser.json());
     var todo = new Todo({
       text : req.body.text
     });
+
     todo.save().then((doc)=>{
       res.send(doc);
     }, (e)=>{
@@ -23,13 +24,8 @@ app.use(bodyParser.json());
  });
 
  app.get("/todos", (req, res) => {
-   try {
 
-   } catch (e) {
-
-   } finally {
-
-   } Todo.find().then( (todos)=>{
+   Todo.find().then( (todos)=>{
       res.send({todos});
    },(err)=>{
       res.status(400).send(err);
@@ -55,47 +51,9 @@ app.use(bodyParser.json());
    });
  });
 
-app.listen(PORT,()=>{
+app.listen(PORT, ()=>{
   console.log("Server up - listening on port: " + PORT);
 });
 
 
 module.exports = {app};
-
-
-
-// var User = mongoose.model("User",{
-//      email : {
-//         type : String,
-//         required : true,
-//         trim : true,
-//         minLength : 5
-//      }
-// });
-//
-// var newUser = new User({
-//   email : "a@b.c"
-// });
-//
-// newUser.save().then( (usr)=>{
-//   console.log("Todo-item saved: " + usr._id.getTimestamp());
-// }, (e)=>{
-//   console.log("Unable to save user:", e);
-// });
-
-// var newTodo = new Todo({
-//     text : "Fiske akkar",
-//     completed : true,
-//     completedAt : 12345
-// });
-
-// var newTodo = new Todo({
-//     text : " Create a blockbustser movie   "
-//
-// });
-
-// newTodo.save().then( (theDoc)=>{
-//   console.log("Todo-item saved: " + theDoc._id.getTimestamp());
-// }, (e)=>{
-//   console.log("Unable to save todo-item:", e);
-// });

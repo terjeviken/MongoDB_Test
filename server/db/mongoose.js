@@ -4,7 +4,7 @@ const db_host = "46.101.205.213"; // limited by firewall to dev pc
 const db_port = 27017;
 
 
-const  devUri = `mongodb://${db_host}:${db_port}/TodoApp`;
+const devUri = `mongodb://${db_host}:${db_port}/TodoApp`;
 const prodUri = process.env.MONGO_URI;
 
 mongoose.Promise = global.Promise;
