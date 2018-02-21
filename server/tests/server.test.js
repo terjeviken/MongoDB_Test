@@ -13,7 +13,7 @@ var todos = [
 ];
 
 
-// Ensure database Todos empty before each run
+// Ensure database Todos empty before each it() run :O !!!!!
 beforeEach( (done) =>{
   Todo.remove({}).then( ()=>{
     return Todo.insertMany(todos); // return for chaining
@@ -110,15 +110,6 @@ describe("GET /todos/:id",()=>{
 
 describe("DELETE /todos/:id",()=>{
 
-  it("Should delete if id found", (done)=>{
-      request(app)
-        .delete(`/todos/${todos[0]._id.toHexString()}`)
-        .expect(200)
-        .expect( (res) =>{
-          expect(res.body.todo.text).toBe(todos[0].text);
-        })
-        .end(done);
-  }); // it
 
    it("Should return 404 if invalid id format", (done)=>{
         request(app)
@@ -133,5 +124,15 @@ describe("DELETE /todos/:id",()=>{
           .expect(404)
           .end(done);
     });   //
+
+    it("Should delete if id found", (done)=>{
+        request(app)
+          .delete(`/todos/${todos[0]._id.toHexString()}`)
+          .expect(200)
+          .expect( (res) =>{
+            expect(res.body.todo.text).toBe(todos[0].text);
+          })
+          .end(done);
+    }); // it
 
 }); // describe
