@@ -106,3 +106,32 @@ describe("GET /todos/:id",()=>{
   });   // it
 
 }); // describe
+
+
+describe("DELETE /todos/:id",()=>{
+
+  it("Should delete if id found", (done)=>{
+      request(app)
+        .delete(`/todos/${todos[0]._id.toHexString()}`)
+        .expect(200)
+        .expect( (res) =>{
+          expect(res.body.todo.text).toBe(todos[0].text);
+        })
+        .end(done);
+  }); // it
+
+   it("Should return 404 if invalid id format", (done)=>{
+        request(app)
+        .delete(`/todos/1234`)
+          .expect(404)
+          .end(done);
+    });   // it
+
+    it("Should return 404 if id valid, but no match in collection", (done)=>{
+        request(app)
+        .delete(`/todos/${new ObjectID().toHexString()}`)
+          .expect(404)
+          .end(done);
+    });   //
+
+}); // describe
