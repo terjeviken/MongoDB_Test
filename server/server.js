@@ -23,7 +23,17 @@ app.use(bodyParser.json());
  });
 
  app.get("/todos", (req, res) => {
+   try {
 
+   } catch (e) {
+
+   } finally {
+
+   } Todo.find().then( (todos)=>{
+      res.send({todos});
+   },(err)=>{
+      res.status(400).send(err);
+   });
  });
 
 app.listen(PORT,()=>{
